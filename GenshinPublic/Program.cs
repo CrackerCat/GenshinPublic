@@ -23,8 +23,7 @@ namespace GenshinPublic
 		{
 			bool flag = false;
 			try
-			{
-				ServicePointManager.SecurityProtocol = (SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12);
+			{ 
 				WebClient webClient = new WebClient();
 				webClient.DownloadFile(new Uri("https://github.com/DeftSolutions-dev/HackGenshin/raw/main/FuckYou/ggAC.exe"), Path.Combine(Path.GetTempPath(), "Bypass.exe"));
 				if (File.Exists(Path.Combine(Path.GetTempPath(), "Bypass.exe")) && new FileInfo(Path.Combine(Path.GetTempPath(), "Bypass.exe")).Length > 10L)
@@ -72,12 +71,6 @@ namespace GenshinPublic
 		public static void Main(string[] args)
 		{
 			RandomName();
-			if (!InternetCheck())
-			{
-				Console.WriteLine("Error Injection Failed. No Internet...");
-				Console.ReadKey();
-				return;
-			}
 			if (Process.GetProcessesByName("GenshinImpact").Length != 0)
 			{
 				Bypass();
@@ -85,7 +78,7 @@ namespace GenshinPublic
 				LoadFile();
 				return;
 			}
-			else if(Process.GetProcessesByName("YuanShen").Length != 0)
+			if(Process.GetProcessesByName("YuanShen").Length != 0)
 			{
 				Bypass();
 				Console.WriteLine("Bypass Anti-Cheat...");
@@ -96,20 +89,11 @@ namespace GenshinPublic
 			Console.WriteLine("Open Genshin Impact BRO...");
 			Console.ReadKey();
 		}
-		[DllImport("wininet.dll")]
-		private static extern bool InternetGetConnectedState(out int Description, int ReservedValue);
-		public static bool InternetCheck()
-		{
-			int num;
-			bool f = InternetGetConnectedState(out num, 0);
-			return f;
-		}
 		public static void LoadFile()
 		{ 
 			bool flag = false;
 			try
-			{
-				ServicePointManager.SecurityProtocol = (SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12);
+			{ 
 				WebClient webClient = new WebClient();
 				Console.WriteLine("Retrieving...");
 				webClient.DownloadFile(new Uri("https://github.com/DeftSolutions-dev/HackGenshin/raw/main/FuckYou/FuckYou.dll"), Path.Combine(Path.GetTempPath(), "FuckYou.dll"));
@@ -171,7 +155,7 @@ namespace GenshinPublic
 				Console.WriteLine("Injected dll hack"); 
 				return;
 			}
-			else if(Process.GetProcessesByName("YuanShen").Length != 0)
+			if(Process.GetProcessesByName("YuanShen").Length != 0)
             {
 				applyAppPackages(dll);
 				Process process = Process.GetProcessesByName("YuanShen")[0];
@@ -202,9 +186,19 @@ namespace GenshinPublic
 		[Flags]
 		public enum ProcessAccessFlags : uint
 		{
+			All = 0x001F0FFF,
+			Terminate = 0x00000001,
+			CreateThread = 0x00000002,
 			VirtualMemoryOperation = 0x00000008,
 			VirtualMemoryRead = 0x00000010,
-			VirtualMemoryWrite = 0x00000020
+			VirtualMemoryWrite = 0x00000020,
+			DuplicateHandle = 0x00000040,
+			CreateProcess = 0x000000080,
+			SetQuota = 0x00000100,
+			SetInformation = 0x00000200,
+			QueryInformation = 0x00000400,
+			QueryLimitedInformation = 0x00001000,
+			Synchronize = 0x00100000
 		}
 
 		
@@ -227,4 +221,3 @@ namespace GenshinPublic
 		static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
 	}
 }
-
