@@ -74,14 +74,14 @@ namespace GenshinPublic
 			if (Process.GetProcessesByName("GenshinImpact").Length != 0)
 			{
 				Bypass();
-				Console.WriteLine("Bypass Anti-Cheat...");
+				Console.WriteLine("Bypass AC[GenshinImpact: Mhyprot2]...");
 				LoadFile();
 				return;
 			}
 			if(Process.GetProcessesByName("YuanShen").Length != 0)
 			{
 				Bypass();
-				Console.WriteLine("Bypass Anti-Cheat...");
+				Console.WriteLine("Bypass AC[GenshinImpact: Mhyprot2]...");
 				LoadFile();
 				return;
 			}
