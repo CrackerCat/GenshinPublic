@@ -113,7 +113,11 @@ namespace GenshinPublic
 					Console.WriteLine("Injecting...");
 					Thread.Sleep(1);
 					InjectDLL(Path.Combine(Path.GetTempPath(), "FuckYou.dll"));
+					try{
 					File.Delete(Path.Combine(Path.GetTempPath(), "Bypass.exe"));
+					}catch {
+					Console.WriteLine("Bypass.exe не может удалиться и за отсуствия доступу к программе или она работает в фонов режиме.")
+					}
 					Console.WriteLine("Done\nLoader By DesirePro(FUCK#9803)");
 					Thread.Sleep(100);
 				}
